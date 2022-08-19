@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import UrlContext from './UrlContext';
 import getApiUrl from '../Helpers/getApiStarWars';
+// import Filtros from '../Components/Filter';
 
 function UrlProvider({ children }) {
   const [resApi, setResApi] = useState([]);
+
   const [resApiDel, setResApiDel] = useState([]);
+
+  const [filtro1, setFiltro1] = useState(['']);
 
   const getApiStar = async () => {
     const res = await getApiUrl();
     setResApi(res.results);
-    console.log(res.results);
   };
 
   useEffect(() => {
@@ -18,13 +21,18 @@ function UrlProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    setFiltro1(filtro1);
+  }, []);
+
+  useEffect(() => {
     setResApiDel(resApi.map((e) => delete e.residents));
-    console.log('DEL', resApiDel);
   }, [resApi]);
 
   const contextValue = {
     resApi,
     resApiDel,
+    filtro1,
+    setFiltro1,
   };
 
   return (
