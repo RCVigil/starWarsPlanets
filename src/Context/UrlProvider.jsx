@@ -7,9 +7,17 @@ import getApiUrl from '../Helpers/getApiStarWars';
 function UrlProvider({ children }) {
   const [resApi, setResApi] = useState([]);
 
-  const [resApiDel, setResApiDel] = useState([]);
+  // const [resApiDel, setResApiDel] = useState([]);
 
-  const [filtro1, setFiltro1] = useState(['']);
+  const [filtro1, setFiltro1] = useState('');
+
+  const [column, setColumn] = useState('population');
+
+  const [comparison, setComparison] = useState('maior que');
+
+  const [value, setValue] = useState('0');
+
+  const [filtNum, setFiltNum] = useState([]);
 
   const getApiStar = async () => {
     const res = await getApiUrl();
@@ -18,21 +26,30 @@ function UrlProvider({ children }) {
 
   useEffect(() => {
     getApiStar();
+    // setFiltro1(filtro1);
+    // setColumn(column);
+    // setComparison(comparison);
+    // setValue(value);
+    // setFiltNum(filtNum);
   }, []);
 
-  useEffect(() => {
-    setFiltro1(filtro1);
-  }, []);
-
-  useEffect(() => {
-    setResApiDel(resApi.map((e) => delete e.residents));
-  }, [resApi]);
+  // useEffect(() => {
+  //   setResApiDel(resApi.map((e) => delete e.residents));
+  // }, [resApi]);
 
   const contextValue = {
     resApi,
-    resApiDel,
+    // resApiDel,
     filtro1,
     setFiltro1,
+    column,
+    setColumn,
+    comparison,
+    setComparison,
+    value,
+    setValue,
+    filtNum,
+    setFiltNum,
   };
 
   return (
