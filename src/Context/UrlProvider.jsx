@@ -18,6 +18,14 @@ function UrlProvider({ children }) {
 
   const [filtNum, setFiltNum] = useState(resApi);
 
+  const [columArray, setColumArray] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
+
   const getApiStar = async () => {
     const res = await getApiUrl();
     setResApi(res.results);
@@ -30,7 +38,8 @@ function UrlProvider({ children }) {
 
   useEffect(() => {
     const filterStr = () => {
-      setResEsp(resApi.filter((elem) => elem.name.includes(filtro1)));
+      setResEsp(resApi.filter((elem) => elem
+        .name.toLowerCase().includes(filtro1.toLowerCase())));
     };
     filterStr();
   }, [filtro1]);
@@ -49,6 +58,8 @@ function UrlProvider({ children }) {
     filtNum,
     setFiltNum,
     resEsp,
+    columArray,
+    setColumArray,
   };
 
   return (

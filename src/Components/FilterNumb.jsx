@@ -10,11 +10,12 @@ function FilterNumb() {
     setComparison,
     comparison,
     setValue,
+    columArray,
+    setColumArray,
     value } = useContext(UrlContext);
 
   function handleSubmit() {
     const filtNumMaior = resEsp.filter((elem) => {
-      // console.log(`${[column]}`, elem[column]);
       if (comparison === 'maior que') {
         return (+elem[column]) > (+value);
       }
@@ -27,6 +28,7 @@ function FilterNumb() {
       return elem;
     });
     setResEsp(filtNumMaior);
+    setColumArray(columArray.filter((el) => el !== column));
   }
 
   return (
@@ -41,11 +43,23 @@ function FilterNumb() {
           id="pesq"
           data-testid="column-filter"
         >
-          <option value="population">population</option>
+
+          {
+            columArray.map((eleCol, ind) => (
+              <option
+                key={ ind }
+                value={ eleCol }
+              >
+                {eleCol}
+              </option>
+            ))
+          }
+
+          {/* <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
           <option value="diameter">diameter</option>
           <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          <option value="surface_water">surface_water</option> */}
         </select>
 
         {' '}
