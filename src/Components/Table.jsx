@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import UrlContext from '../Context/UrlContext';
 
 export default function Table() {
-  const { resApi, filtro1, filtNum } = useContext(UrlContext);
+  const { resEsp } = useContext(UrlContext);
 
   return (
     <div>
@@ -35,7 +35,7 @@ export default function Table() {
 
         <tbody>
 
-          { filtNum.length !== 0 ? (filtNum.map((el, ind2) => (
+          { resEsp.map((el, ind2) => (
             <tr key={ ind2 }>
 
               <td>
@@ -93,67 +93,7 @@ export default function Table() {
               </td>
 
             </tr>
-          ))) : ((resApi).filter((plan) => (
-            (plan.name).includes(filtro1)))
-            .map((elem, ind) => (
-              <tr key={ ind }>
-
-                <td>
-                  {elem.name}
-                </td>
-                <td>
-                  {elem.rotation_period}
-                </td>
-                <td>
-                  {elem.orbital_period}
-                </td>
-                <td>
-                  {elem.diameter}
-                </td>
-                <td>
-                  {elem.climate}
-                </td>
-                <td>
-                  {elem.gravity}
-                </td>
-                <td>
-                  {elem.terrain}
-                </td>
-                <td>
-                  {elem.surface_water}
-                </td>
-                <td>
-                  {elem.population}
-                </td>
-                <td>
-                  <br />
-                  <a
-                    target="_blank"
-                    href={ elem.films }
-                    rel="license noreferrer"
-                  >
-                    {elem.films}
-                  </a>
-                  <br />
-                </td>
-                <td>
-                  {elem.created}
-                </td>
-                <td>
-                  {elem.edited}
-                </td>
-                <td>
-                  <a
-                    target="_blank"
-                    href={ elem.url }
-                    rel="license noreferrer"
-                  >
-                    {elem.url}
-                  </a>
-                </td>
-
-              </tr>
-            )))}
+          ))}
 
         </tbody>
 

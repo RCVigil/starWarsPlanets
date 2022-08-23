@@ -3,9 +3,8 @@ import UrlContext from '../Context/UrlContext';
 
 function FilterNumb() {
   const {
-    setFiltNum,
-    // setResApi,
-    resApi,
+    setResEsp,
+    resEsp,
     setColumn,
     column,
     setComparison,
@@ -13,14 +12,9 @@ function FilterNumb() {
     setValue,
     value } = useContext(UrlContext);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    // const eraseUnk = filtNum.filter((elem) => delete elem.population === unknown);
-
-    const filtNumMaior = resApi.filter((elem) => {
-      console.log(`${[column]}`, elem[column]);
-      // if (elem[column] !== 'unknown') {
+  function handleSubmit() {
+    const filtNumMaior = resEsp.filter((elem) => {
+      // console.log(`${[column]}`, elem[column]);
       if (comparison === 'maior que') {
         return (+elem[column]) > (+value);
       }
@@ -28,15 +22,11 @@ function FilterNumb() {
         return (+elem[column]) < (+value);
       }
       if (comparison === 'igual a') {
-        return (+elem[column]) === (+value);
+        return elem[column] === value;
       }
       return elem;
-      // }
-      // return elem;
     });
-    setFiltNum(filtNumMaior);
-    console.log(filtNumMaior);
-    // setResApi(...resApi, filtNumMaior);
+    setResEsp(filtNumMaior);
   }
 
   return (

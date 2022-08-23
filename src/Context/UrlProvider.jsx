@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import UrlContext from './UrlContext';
 import getApiUrl from '../Helpers/getApiStarWars';
-// import Filtros from '../Components/Filter';
 
 function UrlProvider({ children }) {
   const [resApi, setResApi] = useState([]);
 
-  // const [resApiDel, setResApiDel] = useState([]);
+  const [resEsp, setResEsp] = useState([]);
 
   const [filtro1, setFiltro1] = useState('');
 
@@ -17,29 +16,28 @@ function UrlProvider({ children }) {
 
   const [value, setValue] = useState('0');
 
-  const [filtNum, setFiltNum] = useState([]);
+  const [filtNum, setFiltNum] = useState(resApi);
 
   const getApiStar = async () => {
     const res = await getApiUrl();
     setResApi(res.results);
+    setResEsp(res.results);
   };
 
   useEffect(() => {
     getApiStar();
-    // setFiltro1(filtro1);
-    // setColumn(column);
-    // setComparison(comparison);
-    // setValue(value);
-    // setFiltNum(filtNum);
   }, []);
 
-  // useEffect(() => {
-  //   setResApiDel(resApi.map((e) => delete e.residents));
-  // }, [resApi]);
+  useEffect(() => {
+    const filterStr = () => {
+      setResEsp(resApi.filter((elem) => elem.name.includes(filtro1)));
+    };
+    filterStr();
+  }, [filtro1]);
 
   const contextValue = {
     resApi,
-    // resApiDel,
+    setResEsp,
     filtro1,
     setFiltro1,
     column,
@@ -50,6 +48,7 @@ function UrlProvider({ children }) {
     setValue,
     filtNum,
     setFiltNum,
+    resEsp,
   };
 
   return (
