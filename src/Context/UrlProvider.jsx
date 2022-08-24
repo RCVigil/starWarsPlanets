@@ -20,7 +20,7 @@ function UrlProvider({ children }) {
 
   const [columArray, setColumArray] = useState([
     'population',
-    ' period',
+    'orbital_period',
     'diameter',
     'rotation_period',
     'surface_water',
