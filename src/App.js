@@ -4,6 +4,7 @@ import Table from './Components/Table';
 import UrlProvider from './Context/UrlProvider';
 import Filtros from './Components/Filter';
 import FilterNumb from './Components/FilterNumb';
+import FilterRemov from './Components/FilterRemov';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <h1>Projeto Star Wars - Trybe</h1>
         <Filtros />
         <FilterNumb />
+        <FilterRemov />
         <Table />
       </span>
     </UrlProvider>

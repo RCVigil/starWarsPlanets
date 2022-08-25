@@ -9,18 +9,26 @@ function FilterNumb() {
     column,
     setComparison,
     comparison,
-    setValue,
     columArray,
     setColumArray,
-    value } = useContext(UrlContext);
+    colGlass,
+    setColGlass,
+    setValue,
+    value,
+  } = useContext(UrlContext);
+
+  function columArrayDel() {
+    const arrayDel = (columArray?.filter((elem1) => elem1 === column));
+    setColGlass([...colGlass, arrayDel]);
+  }
 
   function handleSubmit() {
-    const filtNumMaior = resEsp.filter((elem) => {
+    const filtNumMaior = resEsp?.filter((elem) => {
       if (comparison === 'maior que') {
-        return (+elem[column]) > (+value);
+        return +elem[column] > +value;
       }
       if (comparison === 'menor que') {
-        return (+elem[column]) < (+value);
+        return +elem[column] < +value;
       }
       if (comparison === 'igual a') {
         return elem[column] === value;
@@ -28,61 +36,40 @@ function FilterNumb() {
       return elem;
     });
     setResEsp(filtNumMaior);
-    setColumArray(columArray.filter((el) => el !== column));
+    const columFilter = columArray.filter((el) => el !== column);
+    setColumArray(columFilter, ...columArray);
+    setValue('0');
+    columArrayDel();
   }
 
   return (
     <div>
+      <br />
       <label htmlFor="pesq">
         <h1>Pesquisar:</h1>
-
-        <br />
         <select
           onChange={ (e) => setColumn(e.target.value) }
           name="pesq"
           id="pesq"
           data-testid="column-filter"
         >
-
-          {
-            columArray.map((eleCol, ind) => (
-              <option
-                key={ ind }
-                value={ eleCol }
-              >
-                {eleCol}
-              </option>
-            ))
-          }
-
+          {columArray.map((eleCol, ind) => (
+            <option key={ ind } value={ eleCol }>
+              {eleCol}
+            </option>
+          ))}
         </select>
-
         {' '}
-
         <select
           name="pesq"
           data-testid="comparison-filter"
           onChange={ (e) => setComparison(e.target.value) }
         >
-          <option
-            value="maior que"
-          >
-            maior que
-          </option>
-          <option
-            value="menor que"
-          >
-            menor que
-          </option>
-          <option
-            value="igual a"
-          >
-            igual a
-          </option>
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
         </select>
-
         {' '}
-
         <input
           type="number"
           name="value"
@@ -91,17 +78,11 @@ function FilterNumb() {
           onChange={ (e) => Number(setValue(e.target.value)) }
         />
       </label>
-
       {' '}
-
-      <button
-        type="button"
-        data-testid="button-filter"
-        onClick={ handleSubmit }
-      >
+      <button type="button" data-testid="button-filter" onClick={ handleSubmit }>
         Filtrar
       </button>
-
+      <br />
     </div>
   );
 }
