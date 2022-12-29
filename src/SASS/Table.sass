@@ -1,0 +1,41 @@
+@import 'function'
+
+  $background-color-table: #979797
+$font-color-table: white
+
+.tableDiv1
+  width: 100%
+  height: 100%
+  color: $font-color-table
+
+.tableFat
+  border: 5px solid gold
+
+.tableThead
+  border: 2px solid gold
+
+  tr
+    border: 2px solid gold
+
+    th
+      background-color: #00ff48d5
+      border: 2px solid gold
+      color: black
+
+tbody
+  background: center
+
+  tr
+
+    td
+      background-color: $background-color-table
+      border: 1px solid rgb(195, 166, 0)
+      color: rgb(255, 255, 0)
+      text-align: center
+
+      a
+        background-color: $background-color-table
+        color: rgb(255, 255, 0)
+
+.trTable
+  @include text-color(key)
