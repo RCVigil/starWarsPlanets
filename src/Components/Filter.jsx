@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
+import '../SASS/Filter.sass';
 import UrlContext from '../Context/UrlContext';
+import DarkMode from './DarkMode';
 
 export default function Filtros() {
   const { filtro1, setFiltro1 } = useContext(UrlContext);
@@ -10,7 +12,7 @@ export default function Filtros() {
   }
 
   return (
-    <div>
+    <div className="filterDiv">
       <label htmlFor="textFilter">
         <input
           type="text"
@@ -22,6 +24,7 @@ export default function Filtros() {
           onChange={ handleChange }
         />
       </label>
+      <DarkMode />
     </div>
   );
 }

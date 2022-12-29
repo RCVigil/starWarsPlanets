@@ -11,15 +11,17 @@ function FilterNumb() {
     comparison,
     columArray,
     setColumArray,
-    colGlass,
-    setColGlass,
+    filterGlass,
+    setFilterGlass,
     setValue,
     value,
   } = useContext(UrlContext);
 
   function columArrayDel() {
-    const arrayDel = (columArray?.filter((elem1) => elem1 === column));
-    setColGlass([...colGlass, arrayDel]);
+    setFilterGlass(([
+      ...filterGlass,
+      { col: column, comp: comparison, valor: value },
+    ]).sort());
   }
 
   function handleSubmit() {
@@ -38,6 +40,8 @@ function FilterNumb() {
     setResEsp(filtNumMaior);
     const columFilter = columArray.filter((el) => el !== column);
     setColumArray(columFilter, ...columArray);
+    const natyvie = resEsp.Set();
+    console.log(natyvie);
     setValue('0');
     columArrayDel();
   }

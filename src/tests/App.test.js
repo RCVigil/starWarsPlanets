@@ -4,8 +4,6 @@ import App from '../App';
 import userEvent from '@testing-library/user-event';
 import testData from '../../cypress/mocks/testData';
 import UrlProvider from '../Context/UrlProvider';
-import { act } from 'react-dom/test-utils';
-
 
 describe('Testes do Projeto Star Wars', () => {
   test('Testando component App', () => {
@@ -47,9 +45,10 @@ describe('Testes do Projeto Star Wars', () => {
     const tableIn = screen.getByRole('table')
 
     expect(tableIn).toBeInTheDocument();
-    // screen.logTestingPlaygroundURL()
   });
+});
 
+describe('Testes de Mocks', () => {
   test('Testando o component Filter.jsx', async () => {
     jest.spyOn(global, "fetch");
     global.fetch.mockResolvedValue({
@@ -65,6 +64,7 @@ describe('Testes do Projeto Star Wars', () => {
 
     userEvent.type(inpText, 'Tatooine')
     expect(inpText).toHaveValue('Tatooine');
+    // screen.logTestingPlaygroundURL()
   });
 
   test('Testando endPoint', async () => {
@@ -126,5 +126,4 @@ describe('Testes do Projeto Star Wars', () => {
     const butFil = screen.getByRole('button', {  name: /filtrar/i})
     userEvent.click(butFil)
   });
-
 });

@@ -1,17 +1,18 @@
 import React, { useContext } from 'react';
 import UrlContext from '../Context/UrlContext';
+import '../SASS/Table.sass';
 
 export default function Table() {
   const { resEsp } = useContext(UrlContext);
 
   return (
-    <div>
+    <div className="tableDiv1">
 
       <br />
 
-      <table border="1">
+      <table className="tableFat">
 
-        <thead>
+        <thead className="tableThead">
 
           <tr>
 
@@ -36,7 +37,7 @@ export default function Table() {
         <tbody>
 
           { resEsp.map((el, ind2) => (
-            <tr key={ ind2 }>
+            <tr className={ `trTable-${ind2}` } key={ ind2 }>
 
               <td>
                 {el.name}

@@ -26,7 +26,13 @@ function UrlProvider({ children }) {
     'surface_water',
   ]);
 
-  const [colGlass, setColGlass] = useState([]);
+  const [filterGlass, setFilterGlass] = useState([]);
+
+  const handleBrem = () => {
+    console.log(column, comparison, value);
+  };
+
+  const handleBremBut = handleBrem;
 
   const getApiStar = async () => {
     const res = await getApiUrl();
@@ -62,8 +68,9 @@ function UrlProvider({ children }) {
     resEsp,
     columArray,
     setColumArray,
-    colGlass,
-    setColGlass,
+    filterGlass,
+    setFilterGlass,
+    handleBremBut,
   };
 
   return (

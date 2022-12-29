@@ -3,34 +3,27 @@ import UrlContext from '../Context/UrlContext';
 
 export default function FilterRemov() {
   const {
-    setColGlass,
-    colGlass,
-    column,
+    filterGlass,
+    handleBremBut,
   } = useContext(UrlContext);
 
-  const handleBrem = () => {
-    const colAltern = colGlass.filter((el) => el === column);
-    console.log('colAtern é: ', colAltern, 'colGlass é: ', colGlass);
-    setColGlass(colAltern);
-  };
-
   // useEffect(() => {
-  //   handleBrem();
+  //   handleBremBut();
   // }, []);
 
   return (
     <div>
-      { colGlass === '' ? '' : colGlass.map((elem, ind) => (
+      { filterGlass && filterGlass.map((elem, ind) => (
         <h3
           data-testid="filter"
           key={ ind }
           id={ ind }
         >
-          {elem}
+          {elem.col}
           {''}
           <button
             type="button"
-            onClick={ handleBrem }
+            onClick={ handleBremBut }
           >
             X
           </button>
